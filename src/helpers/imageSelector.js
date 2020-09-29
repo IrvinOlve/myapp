@@ -12,10 +12,9 @@ import * as Progress from 'react-native-progress';
 export default imageSelector = async () => {
 
     const options = {
-        // noData: true,
-        // allowsEditing: true,
-        // aspect: [4, 3],
-        // quality: 1,
+        noData: true,
+        allowsEditing: true,
+        quality: 1,
     }
 
     // Function to pick image from device.

@@ -2,6 +2,82 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    profileContainer: {
+        paddingHorizontal: 10,
+        paddingTop: 25,
+        top: 100,
+        height: '100%',
+        borderTopRightRadius: 35,
+        borderTopLeftRadius: 35,
+        backgroundColor: "#FFF",
+    },
+    categoryTitle: {
+        fontSize: 22,
+        color: '#696969',
+        fontWeight: '600',
+        paddingBottom: 10,
+    },
+    backgroundProfileImage: {
+        width: '100%',
+        height: 430,
+        position: 'absolute',
+    },
+    postsContainer: {
+        paddingTop: 30,
+    },
+    aboutContainer: {
+        marginHorizontal: 20,
+        paddingHorizontal: 5,
+        paddingBottom: 30,
+        borderBottomColor: 'lightgrey',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+
+    },
+    friendsContainer: {
+        paddingTop: 40,
+        marginHorizontal: 20,
+        paddingHorizontal: 5,
+        paddingBottom: 30,
+    },
+    profileInfo: {
+        flexDirection: 'row',
+        top: 35,
+        left: 30,
+    },
+    profileFunctions: {
+        left: 30,
+        top: 35,
+    },
+    profileAvatar: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+    },
+    statsContainer: {
+        flexDirection: 'row',
+        paddingTop: 15,
+    },
+    statsNumbers: {
+        textAlign: 'center',
+        fontWeight: '600',
+        fontSize: 17,
+        color: 'white',
+    },
+    statsTexts: {
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: '200',
+        color: 'white',
+    },
+    statsMiddleBox: {
+        borderLeftColor: 'lightgrey',
+        borderLeftWidth: StyleSheet.hairlineWidth,
+        borderRightColor: 'lightgrey',
+        borderRightWidth: StyleSheet.hairlineWidth,
+        paddingHorizontal: 20,
+        marginHorizontal: 20,
+        textAlign: 'center',
+    },
     scrollView: {
         backgroundColor: 'white',
     },
@@ -22,29 +98,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: -100,
         borderRadius: 5,
-    },
-    homeContainer: {
-        backgroundColor: '#FAFAFA',
-        padding: 20,
-        // flex: 1,
-        // paddingBottom: 5,
-
-        // shadowColor: "#454D65",
-        // shadowOffset: { height: 5 },
-        // shadowRadius: 7,
-        // shadowOpacity: 0.1,
-        borderBottomColor: '#E0E0E0',
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // flexDirection: 'row',
-        // borderColor: 'black',
-        // borderWidth: 1,
-    },
-    avatar: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
     },
     loginInputText: {
         borderColor: 'white',
@@ -105,50 +158,7 @@ const styles = StyleSheet.create({
         paddingRight: 12,
         textAlign: 'right',
     },
-    profileAvatar: {
-        width: 70,
-        height: 70,
-        borderRadius: 50,
-        left: 10,
-    },
-    avatarAdd: {
-        position: 'absolute',
-        top: 50,
-        left: 60,
-        // borderColor: 'white',
-        // borderWidth: 20,
-        // borderRadius: 50,
-        // width: 70,
-        // height: 70,
-        // borderRadius: 50,
-        // left: 10,
-    },
-    statsContainer: {
-        position: 'absolute',
-        flexDirection: 'row',
-        paddingVertical: 10,
-        right: 35,
-        top: 30,
-    },
-    statsNumbers: {
-        textAlign: 'center',
-        fontWeight: '600',
-        fontSize: 17,
-    },
-    statsTexts: {
-        textAlign: 'center',
-        fontSize: 15,
-        fontWeight: '200',
-    },
-    statsMiddleBox: {
-        borderLeftColor: 'lightgrey',
-        borderLeftWidth: StyleSheet.hairlineWidth,
-        borderRightColor: 'lightgrey',
-        borderRightWidth: StyleSheet.hairlineWidth,
-        paddingHorizontal: 20,
-        marginHorizontal: 20,
-        textAlign: 'center',
-    },
+
 });
 
 export default styles;

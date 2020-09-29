@@ -12,11 +12,9 @@ import firestore from '@react-native-firebase/firestore';
 
 
 
-export default handleProfile = async (name, username, bio) => {
+export default handleProfile = async (name, username, bio, image, location) => {
 
-    function Hola() {
-        return 'Hola';
-    }
+
     const user = auth().currentUser;
     const dataRef = firestore().collection('users').doc(user.uid);
     var state = null;
@@ -29,7 +27,7 @@ export default handleProfile = async (name, username, bio) => {
 
         // Store profile properties locally to return to function.
         const doc = await dataRef.get()
-        const props = doc.data().profile;
+        const props = doc.data();
 
         handleChange(props);
     } else {
@@ -38,13 +36,13 @@ export default handleProfile = async (name, username, bio) => {
             // Update profile properties with new passed data.
 
             await dataRef
-                .update({
-                    profile: {
-                        name: name,
-                        username: username,
-                        bio: bio,
-                    }
-                });
+                .set({
+                    name: name,
+                    username: username,
+                    bio: bio,
+                    avatar: image,
+                    location: location,
+                }, { merge: true });
         }
         catch (e) {
             alert('Something went wrong, please try again.' + e)

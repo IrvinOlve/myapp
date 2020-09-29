@@ -9,7 +9,7 @@ import uuid4 from 'uuid/v4';
 import auth from '@react-native-firebase/auth';
 import * as Progress from 'react-native-progress';
 
-export default uploadToDDB = async (uri) => {
+export default uploadPhoto = async (uri) => {
 
     const imageURL = await new Promise(async (resolve, rejection) => {
 
@@ -33,7 +33,7 @@ export default uploadToDDB = async (uri) => {
 
             // console.log(snapshot.totalBytesTransferred);
         }, function () {
-            // Handle unsuccessful uploads
+            rejection();
         }, async function () {
             const url = await reference.getDownloadURL();
             resolve(url);

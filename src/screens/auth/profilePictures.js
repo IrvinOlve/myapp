@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, FlatList, SafeAreaView, VirtualizedList, SectionList, ActivityIndicator, RefreshControl, } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, SafeAreaView, VirtualizedList, SectionList, ActivityIndicator, RefreshControl, Animated } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from "moment";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -9,30 +9,13 @@ import auth from '@react-native-firebase/auth';
 
 // temporary data until we pull from Firebase
 
-const wait = (timeout) => {
-    return new Promise(resolve => {
-        setTimeout(resolve, timeout);
-    });
-}
+function renderPost(post) {
 
-
-function renderPost(post, currentData) {
-
-    let currentUserProfile = [];
 
     return (
-        <View style={styles.feedItem}>
-            <Image source={{ uri: currentData.photoURL }} style={styles.avatar} />
-            <View style={{
-                flex: 1,
-                marginRight: 16,
-            }}>
-                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", }}>
-                </View>
-                <Image source={{ uri: post.image }} style={styles.postImage} resizeMode="cover" />
 
-            </View>
-        </View>
+        <Image source={{ uri: post.image }} style={styles.postImage} resizeMode="cover" />
+
     );
 }
 
@@ -57,34 +40,50 @@ export default function NewsFeedScreen() {
                 });
 
                 setUsers(users);
-                handleProfile().then(profile => {
-                    setCurrentData(profile)
-                    setLoading(false)
-                });
-
+                setLoading(false)
             });
 
         // Unsubscribe from events when no longer in use
         return () => subscriber();
     }, []);
-
+    const HEADER_EXPANDED_HEIGHT = 300
+    const HEADER_COLLAPSED_HEIGHT = 60
+    let scrollY = new Animated.Value(0)
+    const headerHeight = scrollY.interpolate({
+        inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
+        outputRange: [HEADER_EXPANDED_HEIGHT, HEADER_COLLAPSED_HEIGHT],
+        extrapolate: 'clamp'
+    })
     return (
-        <View style={styles.container}>
+        <Animated.View
+            onScroll={Animated.event(
+                [{
+                    nativeEvent: {
+                        contentOffset: {
+                            y: scrollY
+                        }
+                    }
+                }], { useNativeDriver: false })}
+            scrollEventThrottle={16}
+            style={[styles.container, { height: headerHeight }]}>
 
             {loading ? (
                 < ActivityIndicator />
             )
                 : (
+
                     <FlatList
                         numColumns='3'
                         style={styles.feed}
                         data={users}
-                        renderItem={({ item }) => renderPost(item, currentData)}
+                        renderItem={({ item }) => renderPost(item)}
                         keyExtractor={item => item.key}
-                        showsVerticalScrollIndicator={false}
-                    />
-                )}
-        </View >
+                        showsVerticalScrollIndicator={false} />
+
+
+                )
+            }
+        </Animated.View>
 
     );
 }
@@ -93,6 +92,8 @@ export default function NewsFeedScreen() {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
+        top: 30,
+        flex: 1,
     },
     feed: {
         marginHorizontal: 10,

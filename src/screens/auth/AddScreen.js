@@ -5,11 +5,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import React, { useEffect, useState, useRef } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import NewsFeedScreen from '../../components/NewsFeedScreen';
+import NewsFeedScreen from './NewsFeedScreen';
 import StyleButton from '../../components/Button';
-import imageSelector from '../../components/imageSelector';
-import uploadToDB from '../../components/uploadToDB';
-import { addpost } from '../../components/AppFunctions';
+import imageSelector from '../../helpers/imageSelector';
+import uploadPhoto from '../../helpers/uploadPhoto';
+import { addpost } from '../../helpers/AppFunctions';
 import {
     SafeAreaView,
     ScrollView,

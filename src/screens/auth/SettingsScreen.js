@@ -20,7 +20,7 @@ import {
 import auth from '@react-native-firebase/auth';
 import { firebase } from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
-import handleProfile from '../../components/handleProfile';
+import handleProfile from '../../helpers/handleProfile';
 
 export default SettingsScreen = ({ navigation }) => {
     const user = auth().currentUser;
