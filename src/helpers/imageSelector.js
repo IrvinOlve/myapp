@@ -1,13 +1,8 @@
 import 'react-native-gesture-handler';
 
-import * as React from 'react';
-
+import React from 'react';
 import ImagePicker from 'react-native-image-picker';
-import storage from '@react-native-firebase/storage';
-import { utils } from '@react-native-firebase/app';
-import uuid4 from 'uuid/v4';
-import auth from '@react-native-firebase/auth';
-import * as Progress from 'react-native-progress';
+
 
 export default imageSelector = async () => {
 
@@ -18,7 +13,7 @@ export default imageSelector = async () => {
     }
 
     // Function to pick image from device.
-    const selectImage = await new Promise(async (resolve, rejection) => {
+    return await new Promise(async (resolve, rejection) => {
         ImagePicker.showImagePicker(options, selectedImage => {
             const { didCancel, error } = selectedImage;
             if (didCancel) {
@@ -31,5 +26,4 @@ export default imageSelector = async () => {
         })
     });
 
-    return selectImage;
 };

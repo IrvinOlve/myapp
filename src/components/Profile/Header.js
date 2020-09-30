@@ -70,17 +70,9 @@ export default Header = ({ user, navigation, fromPost }) => {
             )
         } else if (user && !fromPost) {
             return (
-
                 <View style={[styles.headerRight, styles.iconShadow]}>
                     <Ionicons name={'settings-outline'} size={25} color={'white'} onPress={() => navigation.navigate('SettingsScreen')} />
                 </View>
-
-                // <View style={[styles.headerLeft, styles.iconShadow]}>
-                //     <Ionicons
-                //         name={'arrow-back-outline'}
-                //         size={25} color={'white'}
-                //         onPress={() => navigation.goBack()} />
-                // </View>
             )
         } else if (!user) {
             return (

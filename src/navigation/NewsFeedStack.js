@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import ProfileScreen from '../screens/auth/ProfileScreen';
 import NewsFeedScreen from '../screens/auth/NewsFeedScreen';
-
+import CommentsScreen from '../screens/auth/CommentsScreen'
 const Stack = createStackNavigator();
 
 export default function NewsFeedStack() {
@@ -24,6 +24,16 @@ export default function NewsFeedStack() {
                 component={ProfileScreen}
                 options={{ headerShown: false }}
             />
+
+            <Stack.Screen
+                name="CommentsScreen"
+                component={CommentsScreen}
+                options={{
+                    headerTitle: 'Comments',
+                    headerBackTitle: ' ',
+                }}
+            />
+
 
 
 

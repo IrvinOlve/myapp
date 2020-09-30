@@ -2,22 +2,29 @@ import React from 'react';
 import { View, Button } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 
+// Screens
 import ProfileScreen from '../screens/auth/ProfileScreen';
 import SettingsScreen from '../screens/auth/SettingsScreen';
+import PicturesScreen from '../screens/auth/PicturesScreen';
+import ChatScreen from '../screens/auth/ChatScreen';
 
-import auth from '@react-native-firebase/auth';
+// Helpers
+import currentUser from '../helpers/currentUser';
+
 
 const Stack = createStackNavigator();
-const currentUser = auth().currentUser.uid
 
 export default function Profile({ navigation }) {
+
+    const currentUid = currentUser();
+
     return (
         <>
             <Stack.Navigator initialRouteName={ProfileScreen}>
                 <Stack.Screen
                     name="ProfileScreen"
                     component={ProfileScreen}
-                    initialParams={{ uid: currentUser, fromPost: false }}
+                    initialParams={{ uid: currentUid, fromPost: false }}
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen
@@ -31,6 +38,24 @@ export default function Profile({ navigation }) {
                             </View>
                         ),
                         headerBackTitle: 'Cancel',
+                    }}
+                />
+
+                <Stack.Screen
+                    name="PicturesScreen"
+                    component={PicturesScreen}
+                    options={{
+                        headerTitle: 'Pictures',
+                        headerBackTitle: ' ',
+                    }}
+                />
+
+                <Stack.Screen
+                    name="ChatScreen"
+                    component={ChatScreen}
+                    options={{
+                        headerTitle: 'Chat',
+                        headerBackTitle: ' ',
                     }}
                 />
             </Stack.Navigator>

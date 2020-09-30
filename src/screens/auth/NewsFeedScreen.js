@@ -60,6 +60,7 @@ export default function NewsFeedScreen({ navigation }) {
         });
         setUsers(users);
         // setLoading(false)
+
       });
 
     // Unsubscribe from events when no longer in use

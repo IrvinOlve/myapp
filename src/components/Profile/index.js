@@ -15,14 +15,20 @@ import BackgroundImage from './BackgroundImage';
 import Pictures from './Pictures';
 import ActionButtons from './ActionButtons';
 import Location from './Location';
+import Section from './Section';
+import Separator from '../Separator';
+import ProfileCard from './ProfileCard';
+import _BottomSheet from '../_BottomSheet'
 
 export default Profile = ({ data, navigation, fromPost }) => {
 
     const { bio, avatar, name, location, cover, uid } = data;
-    const current_user = auth().currentUser.uid;
+    const current_user = auth().currentUser;
 
     const currentUser = function checkUser() {
-        return current_user == uid
+        if (current_user.uid != null) {
+            return current_user.uid == uid
+        }
     }
 
     const [loaded, setLoaded] = useState(false); // Set loading to true on component mount
@@ -60,41 +66,35 @@ export default Profile = ({ data, navigation, fromPost }) => {
 
     const renderContent = () => {
         return (
-            <View style={styles.profileContainer}>
-                <View style={{ top: -15, alignItems: "center", justifyContent: "center" }}>
-                    <Ionicons name={'remove'} size={50} color={'lightgrey'} onPress={() => sheetRef.current.snapTo(BottomSheetPosition())} />
+            <>
+                <View style={styles.profileContainer}>
+                    <View style={{ marginTop: -15, alignItems: "center", justifyContent: "center" }}>
+                        <Ionicons name={'remove'} size={50} color={'lightgrey'} onPress={() => sheetRef.current.snapTo(BottomSheetPosition())} />
+                    </View>
+
+                    <ProfileCard navigation={navigation} avatar={avatar} name={name} location={location} />
+
+                    <ScrollView showsVerticalScrollIndicator={false} style={{ flexGrow: 1, marginTop: 70, paddingTop: 20, }} >
+                        <Section title={'About'}>
+                            <Text>{bio}</Text>
+                        </Section>
+
+                        <Separator top={30} bottom={30} />
+
+                        <Section title={'Friends'}>
+
+                        </Section>
+
+                        <Section title={'Photos'} rightButton={'View All'} onPress={() => navigation.navigate('PicturesScreen', { posts: users })} >
+                            <Pictures navigation={navigation} posts={users} />
+                        </Section>
+                    </ScrollView>
                 </View>
-                <View style={{ top: -15, marginHorizontal: 25, }}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Avatar image={avatar} />
-                        <View style={{ left: 27, top: 20 }}>
-                            <Text style={styles.userName}>{name}</Text>
-                            <Location data={location} />
-                        </View>
-                    </View>
-                    <ActionButtons />
-                </View>
-                <ScrollView showsVerticalScrollIndicator={false} style={{ flexGrow: 1 }} >
-
-                    <View style={styles.aboutContainer}>
-                        <Text style={[styles.categoryTitle, { paddingTop: 80, }]}>About</Text>
-                        <Text style={{ fontSize: 16, }}>{bio}</Text>
-                    </View>
-
-                    <View style={styles.friendsContainer}>
-                        <Text style={styles.categoryTitle}>Friends</Text>
-                    </View>
-                    <View style={styles.postsContainer}>
-                        <Pictures navigation={navigation} posts={users} />
-                    </View>
-                </ScrollView>
-            </View>
-
+            </>
         );
     }
 
     const [isVisible, setIsVisible] = useState(true);
-
 
     return (
         <>
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 25,
         borderTopLeftRadius: 25,
         backgroundColor: "#FFF",
+        paddingHorizontal: 25,
     },
     categoryTitle: {
         fontSize: 22,
@@ -151,14 +152,11 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         paddingHorizontal: 5,
         paddingBottom: 30,
-        borderBottomColor: 'lightgrey',
-        borderBottomWidth: StyleSheet.hairlineWidth,
-
     },
     friendsContainer: {
         paddingTop: 40,
-        marginHorizontal: 20,
-        paddingHorizontal: 5,
+        // marginHorizontal: 0,
+        // paddingHorizontal: 5,
         paddingBottom: 30,
     },
     feed: {

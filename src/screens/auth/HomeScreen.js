@@ -11,6 +11,7 @@ import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
 import NewsFeedScreen from './NewsFeedScreen';
 import AddScreen from './AddScreen';
+
 import NewsFeedStack from '../../navigation/NewsFeedStack';
 import ProfileStack from '../../navigation/ProfileStack';
 const Tab = createBottomTabNavigator();

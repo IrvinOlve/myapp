@@ -9,7 +9,7 @@ import PostLoader from './PostLoader';
 
 export default PostCard = ({ navigation, post }) => {
 
-    const { uid, time, text, image } = post;
+    const { uid, time, text, image, key } = post;
 
     const [userData, setUserData] = useState({})
     const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ export default PostCard = ({ navigation, post }) => {
                             <Image source={{ uri: image }} style={styles.postImage} resizeMode="cover" />
                             <View style={{ flexDirection: "row" }}>
                                 <Ionicons name="heart-outline" size={24} color="#73788B" style={{ marginRight: 16 }} />
-                                <Ionicons name="chatbox-outline" size={24} color="#73788B" />
+                                <Ionicons name="chatbox-outline" size={24} color="#73788B" onPress={() => { navigation.navigate('CommentsScreen', post) }} />
                             </View>
                         </View>
                     </>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         marginRight: 16,
         // borderWidth: 1,
-        borderColor: 'black'
+        // borderColor: 'black'
     },
     name: {
         fontSize: 15,

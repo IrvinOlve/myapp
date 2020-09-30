@@ -19,8 +19,6 @@ export async function addpost(imageUri, text, user) {
     const data = await userRef.get();
     const userdata = data.data();
 
-    console.log(userdata.name);
-
     let isUploaded = false;
 
     // const snapshot = await postRef.get();

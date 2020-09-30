@@ -18,16 +18,6 @@ export default Pictures = ({ posts, navigation }) => {
     return (
 
         <>
-            <View style={{ marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, }}>
-                <Text style={{ alignSelf: 'flex-start', fontSize: 22, color: '#696969', fontWeight: '600' }}>
-                    Photos
-                </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('picturesContainerTab')}>
-                    <Text style={{ alignSelf: 'flex-end', fontSize: 20, color: '#696969', fontWeight: '400' }}>
-                        View All
-                    </Text>
-                </TouchableOpacity>
-            </View>
             <FlatList
                 horizontal
                 style={styles.feed}

@@ -11,6 +11,7 @@ import RegisterScreen from './src/screens/index/RegisterScreen';
 const AppStack = createStackNavigator();
 
 export default App = () => {
+
   const isSignedIn = auth().currentUser;
 
   return (
