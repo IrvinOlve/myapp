@@ -10,8 +10,6 @@ export default function addComment({ ...postId }) {
 
     let isUploaded = false;
 
-    console.log(postId);
-
     const dataRef = firestore()
         .collection('users')
         .doc(posterUid)
@@ -24,7 +22,6 @@ export default function addComment({ ...postId }) {
         uid: currentUser,
         time: Date.now(),
     }).then(() => {
-        console.log('Comment added')
         isUploaded = true;
     }
 

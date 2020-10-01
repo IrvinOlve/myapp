@@ -5,91 +5,61 @@ import firestore from '@react-native-firebase/firestore';
 import Loading from '../../components/Loading'
 import CommentInput from '../../components/NewsFeed/CommentInput'
 import getProfile from '../../helpers/getProfile';
+import CommentBubble from '../../components/NewsFeed/CommentBubble';
 
 const CommentsScreen = ({ route }) => {
 
+    // Post idenftiers.
     const { key, uid } = route.params;
 
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
-    const [noComments, setNoComments] = useState(true);
+
+    const postRef = firestore()
+        .collection('users')
+        .doc(uid)
+        .collection('posts')
+        .doc(key)
+        .collection('comments')
 
     useEffect(() => {
-        const subscriber = firestore()
-            .collection('users')
-            .doc(uid)
-            .collection('posts')
-            .doc(key)
-            .collection('comments')
+        const subscriber = postRef
             .onSnapshot(querySnapshot => {
                 const comments = [];
                 querySnapshot.forEach(comment => {
                     comments.push({
                         ...comment.data(),
                         key: comment.id,
-                    });
+                    })
                 });
-
-                setLoading(false);
                 setComments(comments);
+                setLoading(false);
             });
         return () => subscriber();
     }, []);
 
-
-    function Comment({ data }) {
-
-        const [loading, setLoading] = useState(true);
-        const { comment, uid } = data
-        const [commenter, setCommenter] = useState();
-
-
-        useEffect(() => {
-            getProfile(uid)
-                .then(data => {
-                    setCommenter(data)
-                    setLoading(false)
-                })
-        }, [])
-
-
-        return (
-            <>
-                <View>
-                    {loading ?
-                        <Loading />
-                        :
-                        <View style={styles.commentContainer}>
-                            {/* <View style={styles.avatar}> */}
-                            <Image style={styles.avatar} source={{ uri: commenter.avatar }} />
-                            {/* </View> */}
-                            <View style={styles.textContainer}>
-                                <Text style={{ fontSize: 16, }}>
-                                    {comment}
-                                </Text>
-                            </View>
-                        </View>}
-                </View>
-            </>
-        )
-    }
     return (
         <>
             {loading ?
                 <Loading />
                 :
-
                 <FlatList
                     style={styles.comments}
                     data={comments}
-                    renderItem={({ item }) => <Comment data={item} />}
+                    renderItem={({ item }) =>
+                        <CommentBubble
+                            data={{
+                                ...item,
+                                poster_uid: uid,
+                                post_key: key,
+                                comment_key: item.key,
+                            }}
+                        />}
                     keyExtractor={item => item.key}
                     showsVerticalScrollIndicator={false}
                 />
             }
-
             <CommentInput postId={route.params} />
-
         </>
     )
 }

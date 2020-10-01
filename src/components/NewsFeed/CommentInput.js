@@ -8,8 +8,10 @@ import currentUser from '../../helpers/currentUser'
 
 const CommmentInput = ({ postId }) => {
 
-    const [comment, setComment] = useState('');
+    // Post identifiers.
+    const { key, uid } = postId;
 
+    const [comment, setComment] = useState('');
 
     return (
         <>
@@ -25,8 +27,8 @@ const CommmentInput = ({ postId }) => {
                         onPress={() => {
                             setComment('');
                             addComment({
-                                post_Id: postId.key,
-                                posterUid: postId.uid,
+                                post_Id: key,
+                                posterUid: uid,
                                 comment: comment,
                                 currentUser: currentUser(),
                             });
