@@ -1,80 +1,48 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity, ActionSheetIOS, Alert } from 'react-native'
-import removeComment from '../../helpers/removeComment'
-import firestore from '@react-native-firebase/firestore';
+import { View, Text, Image, StyleSheet, TouchableOpacity, } from 'react-native'
+import moment from 'moment'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import commentOptions from '../../helpers/commentOptions'
 
 export default function CommentBubble({ data }) {
 
-    // Original commenter uid, to fetch their profile photo.
-    const { comment, uid } = data
+    // Commenter's uid, to fetch their profile info.
+    const { comment, time, uid } = data
 
-    // Post and comment identifiers. 
-    const { poster_uid, post_key, comment_key } = data;
-
-    const [commenter, setCommenter] = useState();
+    const [commentUser, setCommentUser] = useState();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getProfile(uid)
-            .then(data => {
-                setCommenter(data)
+            .then(profile => {
+                setCommentUser(profile)
                 setLoading(false)
             })
     }, [])
-
-    const userOptions = () => {
-
-        const createTwoButtonAlert = () =>
-            Alert.alert(
-                "Delete comment",
-                "Are you sure?",
-                [
-                    {
-                        text: "Cancel",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel"
-                    },
-                    {
-                        text: "Yes", onPress: () => {
-                            removeComment({
-                                poster_uid: poster_uid,
-                                post_key: post_key,
-                                comment_key: comment_key,
-                            })
-                        }
-                    }
-                ],
-                { cancelable: false }
-            );
-
-        ActionSheetIOS.showActionSheetWithOptions(
-            {
-                options: ["Cancel", "Delete"],
-                destructiveButtonIndex: [1],
-                cancelButtonIndex: 0
-            },
-            buttonIndex => {
-                if (buttonIndex === 0) {
-                    // cancel action
-                } else if (buttonIndex === 1) {
-                    createTwoButtonAlert()
-                }
-            }
-        );
-    }
 
     return (
         <>
             <View>
                 {loading ?
-                    <Loading />
+                    null
                     :
-                    <View style={styles.commentContainer}>
-                        <Image style={styles.avatar} source={{ uri: commenter.avatar }} />
-                        <TouchableOpacity style={styles.textContainer} onPress={() => { userOptions() }}>
-                            <Text style={{ fontSize: 16, }}> {comment} </Text>
-                        </TouchableOpacity>
-                    </View>}
+                    <View style={styles.container}>
+                        <Image style={styles.avatar} source={{ uri: commentUser.avatar }} />
+                        <View style={styles.commentContainer}>
+                            <View style={styles.commentHeader}>
+                                <View>
+                                    <Text style={styles.username}> {commentUser.name} </Text>
+                                    <Text style={styles.time}> {moment(time).fromNow()} </Text>
+                                </View>
+                                <TouchableOpacity style={styles.textContainer} onPress={() => { commentOptions({ data }) }}>
+                                    <Ionicons name="ellipsis-vertical" size={24} color="#73788B" />
+                                </TouchableOpacity>
+                            </View>
+                            <Text style={styles.comment}>{comment}</Text>
+                        </View>
+                    </View>
+                }
             </View>
         </>
     )
@@ -84,22 +52,58 @@ const styles = StyleSheet.create({
     comments: {
         paddingTop: 20,
     },
-    commentContainer: {
+    username: {
+        fontWeight: '400',
+        fontSize: 16,
+    },
+    container: {
         flexDirection: 'row',
+        marginHorizontal: 20,
+    },
+    time: {
+        fontWeight: '700',
+        fontSize: 10,
+        color: 'lightgrey',
+        paddingTop: 3
+    },
+    comment: {
+        fontSize: 15,
+        paddingTop: 10,
+        left: 3,
+        marginRight: 50
     },
     textContainer: {
-        backgroundColor: 'white',
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        marginHorizontal: 15,
-        marginVertical: 5,
-        borderRadius: 100,
+        paddingTop: 5,
     },
     avatar: {
-        marginLeft: 15,
+        // marginLeft: 15,
         marginTop: 5,
-        height: 40,
-        width: 40,
+        height: 45,
+        width: 45,
         borderRadius: 50,
-    }
+    },
+    commentContainer: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 10,
+
+        paddingVertical: 10,
+        marginLeft: 15,
+        marginBottom: 20,
+        borderRadius: 10,
+        width: '100%',
+        backgroundColor: 'white',
+
+        // Shadow 
+        shadowColor: "#454D65",
+        shadowOffset: { height: 5 },
+        shadowRadius: 5,
+        shadowOpacity: 0.1,
+    },
+    commentHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+
+
+    },
 })

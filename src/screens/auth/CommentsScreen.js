@@ -9,7 +9,7 @@ import CommentBubble from '../../components/NewsFeed/CommentBubble';
 
 const CommentsScreen = ({ route }) => {
 
-    // Post idenftiers.
+    // Post idenftiers | KEY => Post ID | UID => Poster UID
     const { key, uid } = route.params;
 
     const [loading, setLoading] = useState(true);
