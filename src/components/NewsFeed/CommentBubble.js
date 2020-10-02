@@ -4,6 +4,7 @@ import moment from 'moment'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import commentOptions from '../../helpers/commentOptions'
+import styles from './styles'
 
 export default function CommentBubble({ data }) {
 
@@ -48,62 +49,3 @@ export default function CommentBubble({ data }) {
     )
 }
 
-const styles = StyleSheet.create({
-    comments: {
-        paddingTop: 20,
-    },
-    username: {
-        fontWeight: '400',
-        fontSize: 16,
-    },
-    container: {
-        flexDirection: 'row',
-        marginHorizontal: 20,
-    },
-    time: {
-        fontWeight: '700',
-        fontSize: 10,
-        color: 'lightgrey',
-        paddingTop: 3
-    },
-    comment: {
-        fontSize: 15,
-        paddingTop: 10,
-        left: 3,
-        marginRight: 50
-    },
-    textContainer: {
-        paddingTop: 5,
-    },
-    avatar: {
-        // marginLeft: 15,
-        marginTop: 5,
-        height: 45,
-        width: 45,
-        borderRadius: 50,
-    },
-    commentContainer: {
-        flex: 1,
-        paddingLeft: 15,
-        paddingRight: 10,
-
-        paddingVertical: 10,
-        marginLeft: 15,
-        marginBottom: 20,
-        borderRadius: 10,
-        width: '100%',
-        backgroundColor: 'white',
-
-        // Shadow 
-        shadowColor: "#454D65",
-        shadowOffset: { height: 5 },
-        shadowRadius: 5,
-        shadowOpacity: 0.1,
-    },
-    commentHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-
-
-    },
-})

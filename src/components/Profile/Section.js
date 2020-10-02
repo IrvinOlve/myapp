@@ -1,14 +1,12 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-
+import { View, Text, TouchableOpacity } from 'react-native';
+import styles from './styles'
 
 export default Section = (props) => {
 
     const { children, title, rightButton, onPress } = props;
-
 
     return (
         <>
@@ -27,28 +25,3 @@ export default Section = (props) => {
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    sectionContainer: {
-        marginBottom: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    sectionTitle: {
-        alignSelf: 'flex-start',
-        fontSize: 22,
-        color: '#696969',
-        fontWeight: '600'
-    },
-    sectionButton: {
-        alignSelf: 'flex-end',
-        fontSize: 20,
-        color: '#696969',
-        fontWeight: '400',
-    },
-    sectionChild: {
-        fontSize: 16,
-        left: -3
-    }
-
-})

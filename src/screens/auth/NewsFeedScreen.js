@@ -9,6 +9,7 @@ import auth from '@react-native-firebase/auth';
 // import handleProfile from "../helpers/handleProfile";
 import PostCard from "../../components/PostCard";
 import Loading from "../../components/Loading";
+import logout from "../../helpers/logout";
 
 // function renderPost(post, currentData) {
 

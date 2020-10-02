@@ -1,10 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import { View, StyleSheet, TouchableOpacity, ActionSheetIOS, Text, FlatList, Image } from 'react-native';
-
+import React from 'react';
+import { TouchableOpacity, FlatList, Image } from 'react-native';
+import styles from './styles'
 
 export default Pictures = ({ posts, navigation }) => {
 
@@ -30,75 +27,3 @@ export default Pictures = ({ posts, navigation }) => {
     )
 
 }
-
-const styles = StyleSheet.create({
-    location: {
-        // paddingLeft: 5,
-        fontFamily: 'Arial',
-        fontWeight: '400',
-        fontSize: 14,
-        color: '#696969',
-    },
-    headerRight: {
-        position: 'absolute',
-        alignSelf: 'flex-end',
-        paddingTop: 60,
-        paddingRight: 22,
-        fontSize: 17,
-        zIndex: 1,
-    },
-    headerLeft: {
-        position: 'absolute',
-        alignSelf: 'flex-start',
-        paddingTop: 60,
-        paddingLeft: 22,
-        fontSize: 17,
-        zIndex: 1,
-    },
-    profileFunctions: {
-        left: 30,
-        top: 35,
-        resizeMode: 'stretch',
-    },
-    dimentions: {
-        position: 'absolute',
-        width: '100%',
-        height: 600,
-    },
-    userName: {
-        fontFamily: 'Arial',
-        fontWeight: '400',
-        fontSize: 30,
-        color: 'white'
-    },
-    location: {
-        paddingLeft: 5,
-        fontFamily: 'Arial',
-        fontWeight: '400',
-        fontSize: 14,
-        color: 'white'
-    },
-    profileAvatar: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-    },
-    profileInfo: {
-        flexDirection: 'row',
-        top: 45,
-        left: 30,
-    },
-    feed: {
-        flex: 1,
-        marginHorizontal: 13.7,
-        // top: 50,
-    },
-    postImageX: {
-        marginHorizontal: 7,
-        width: 115,
-        height: 115,
-        borderRadius: 10,
-        marginVertical: 5,
-    },
-
-})

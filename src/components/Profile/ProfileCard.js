@@ -1,11 +1,16 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text } from 'react-native'
+
+import styles from './styles'
 
 import Avatar from './Avatar';
 import ActionButtons from './ActionButtons';
 import Location from './Location';
 
-export default function ProfileCard({ avatar, location, name, navigation }) {
+export default function ProfileCard(props) {
+
+    const { avatar, location, name, navigation } = props;
+
     return (
         <View>
             <View style={{ flexDirection: 'row' }}>
@@ -20,14 +25,3 @@ export default function ProfileCard({ avatar, location, name, navigation }) {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-
-    userName: {
-        fontFamily: 'Arial',
-        fontWeight: '400',
-        fontSize: 30,
-        color: '#696969',
-        // paddingTop: 17,
-    },
-})

@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, Image } from 'react-native';
 
-
+import styles from './styles'
 export default ProfileButtons = ({ image }) => {
 
     const [imageLoaded, setImageLoaded] = useState(true);
@@ -20,23 +20,3 @@ export default ProfileButtons = ({ image }) => {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    profileAvatar: {
-        width: 110,
-        height: 110,
-        borderRadius: 100,
-        borderColor: 'white',
-    },
-    profileAvatarShadow: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-
-        elevation: 6,
-    },
-})

@@ -10,7 +10,7 @@ import ChatScreen from '../screens/auth/ChatScreen';
 
 // Helpers
 import currentUser from '../helpers/currentUser';
-
+import logout from '../helpers/logout'
 
 const Stack = createStackNavigator();
 
@@ -34,7 +34,7 @@ export default function Profile({ navigation }) {
                         headerTitle: 'Edit profile',
                         headerRight: () => (
                             <View style={{ marginRight: 10 }}>
-                                <Button color='red' title='Log out' onPress={() => logout({ navigation })} />
+                                <Button color='red' title='Log out' onPress={() => logout().then(navigation.navigate('LoginScreen'))} />
                             </View>
                         ),
                         headerBackTitle: 'Cancel',

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Image, View, Text, TouchableOpacity, ActionSheetIOS } from 'react-native';
+import React from 'react';
+import { ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import styles from './styles'
 
-import Header from './Header';
 export default BackgroundImage = ({ data, visible }) => {
 
     const { cover } = data;
@@ -20,12 +20,3 @@ export default BackgroundImage = ({ data, visible }) => {
         </ImageBackground>
     );
 }
-
-const styles = StyleSheet.create({
-    dimentions: {
-        position: 'absolute',
-        width: '100%',
-        height: 550,
-        flex: 1,
-    }
-})

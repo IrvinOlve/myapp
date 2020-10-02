@@ -14,6 +14,8 @@ import {
   ImageBackground,
   StyleSheet,
   Pressable,
+  TouchableOpacity,
+
 } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
@@ -70,9 +72,15 @@ export default LoginScreen = ({ navigation }) => {
 
         <Text style={styless.createAccount}>
           Don't have an account?
-        <Text style={styless.createAccountLink}
-            onPress={(u) => { navigation.navigate('RegisterScreen') }}> Create one
+          <TouchableOpacity>
+            <Text style={styless.createAccountLink}
+              onPress={(u) => {
+                navigation.navigate('RegisterScreen')
+                console.log('pressed')
+              }}> Create one
             </Text>
+          </TouchableOpacity>
+
         </Text>
         {/* <Button
             title='Create an account'

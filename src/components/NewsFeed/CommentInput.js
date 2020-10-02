@@ -6,6 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import addComment from '../../helpers/addComment';
 import currentUser from '../../helpers/currentUser'
 
+import styles from './styles'
+
 const CommmentInput = ({ postId }) => {
 
     // Post identifiers.
@@ -40,18 +42,4 @@ const CommmentInput = ({ postId }) => {
         </>
     )
 }
-const styles = StyleSheet.create({
-    inputContainer: {
-        paddingVertical: 10,
-        paddingLeft: 25,
-        paddingRight: 10,
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'space-between'
-    },
-    input: {
-        width: 300,
-    }
-})
 export default CommmentInput

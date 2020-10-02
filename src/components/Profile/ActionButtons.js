@@ -2,8 +2,8 @@
 import React from 'react';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { View, StyleSheet, TouchableOpacity, Text, Button } from 'react-native';
-
+import { View, TouchableOpacity } from 'react-native';
+import styles from './styles'
 
 export default ActionButtons = ({ navigation }) => {
     return (
@@ -17,14 +17,3 @@ export default ActionButtons = ({ navigation }) => {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    button: {
-        width: '47.5%',
-        alignItems: 'center',
-        paddingVertical: 10,
-        borderRadius: 5,
-        backgroundColor: '#f0f0f0',
-        zIndex: 1000,
-    }
-})
